@@ -21,15 +21,16 @@ exports.handler = (event, context, callback) => {
       });
       }
       
+      var domain = (event.hasOwnProperty('domain'))?event.domain.toLowerCase():'yourdomain.com';
       var name = list[Math.floor(Math.random()*list.length)];
-      //var result = "Call your server: " + name + '.' + event.domain;
+      name = name.toLowerCase();
+      
       var result = {
         name: name,
-        domain: event.domain,
-        full: name + '.' + event.domain
+        domain: domain,
+        full: name + '.' + domain
       };
-      //console.log( result );
-
+      
     callback(null, result);
   });
 };
